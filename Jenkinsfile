@@ -1,2 +1,2 @@
-@Library('powerpony@master') _
+@Library('powerpony@dev') _
 buildPythonPackage()
