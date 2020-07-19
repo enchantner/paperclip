@@ -2,6 +2,11 @@
 
 pipeline {
     agent any
+    environment {
+        PYPI_USERNAME   = credentials('pypi_username')
+        PYPI_PASS       = credentials('pypi_pass')
+        PYPI_URL        = credentials('pypi_url')
+    }
     stages {
         stage("Push package to PyPI repository") {
             when {
@@ -11,7 +16,7 @@ pipeline {
                 docker { image 'python:3.8' }
             }
             steps {
-                buildPythonPackage()
+                buildPythonPackage(PYPI_USERNAME, PYPI_PASS, PYPI_URL)
             }
         }
     }
